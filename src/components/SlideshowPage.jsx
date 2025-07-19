@@ -99,7 +99,7 @@ function SlideshowPage({ bookIndex }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 flex flex-row items-start justify-center p-4 pb-32">
+    <div className="min-h-screen bg-white flex flex-row items-start justify-center p-4 pb-32">
       {/* Left Nav Bar */}
       <div className="w-64 max-h-[80vh] overflow-y-auto bg-white rounded-xl shadow-lg mr-8 p-4 sticky top-8">
         <h2 className="text-2xl font-bold mb-4 text-center">{displayBookName}</h2>
@@ -107,7 +107,7 @@ function SlideshowPage({ bookIndex }) {
           {chapterNumbers.map((chapter) => (
             <li key={chapter} className="mb-2">
               <button
-                className={`w-full text-left font-semibold py-1 px-2 rounded transition-colors ${currentChapter === chapter ? 'bg-indigo-500 text-white' : 'hover:bg-indigo-100'}`}
+                className={`w-full text-left font-semibold py-1 px-2 rounded transition-colors ${currentChapter === chapter ? 'bg-black text-white' : ''}`}
                 onClick={() => goToChapter(chapter)}
               >
                 {`Chapter ${chapter}`}
@@ -117,7 +117,7 @@ function SlideshowPage({ bookIndex }) {
                   {chapters[chapter].map((v) => (
                     <li key={v["Verse"]}>
                       <button
-                        className={`block w-full text-left py-0.5 px-2 rounded text-sm transition-colors ${currentIndex === v._index ? 'bg-indigo-400 text-white font-bold' : 'hover:bg-indigo-50'}`}
+                        className={`block w-full text-left py-0.5 px-2 rounded text-sm transition-colors ${currentIndex === v._index ? 'bg-black text-white font-bold' : ''}`}
                         onClick={() => goToVerse(v._index, chapter)}
                       >
                         வசனம் {v["Verse"]}
@@ -132,22 +132,33 @@ function SlideshowPage({ bookIndex }) {
       </div>
       {/* Verse Card and Controls */}
       <div className="flex-1 flex flex-col items-center justify-center min-h-[80vh]">
-        <Card className="rounded-2xl shadow-2xl p-12 w-full h-full min-h-screen mb-8 flex flex-col items-center justify-center max-w-full">
-          <div className="flex flex-col items-center justify-center w-full h-full text-center">
-            <p className="text-4xl md:text-5xl font-bold leading-normal text-gray-800 mb-8 break-words text-center">
-              {verse["Text"]}
-            </p>
-            <p className="text-2xl font-semibold text-gray-600 text-center">
-              {displayBookName} {verse["Chapter"]}:{verse["Verse"]}
-            </p>
+        <div className="relative w-full h-full min-h-screen mb-8 flex flex-col items-center justify-center max-w-full">
+          {/* Emoji Overlay - only on large screens */}
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-10 select-none text-7xl hidden sm:grid grid-cols-3 grid-rows-2 gap-8 place-items-center rotate-12">
+            <span>✝️</span>
+            <span>🕊️</span>
+            <span>📖</span>
+            <span>🙏</span>
+            <span>✨</span>
+            <span>✝️</span>
           </div>
-        </Card>
-        <div className="mt-2 text-sm text-gray-500 text-center">
+          <Card className="relative z-10 rounded-2xl shadow-2xl p-12 w-full h-full bg-white border flex flex-col items-center justify-center max-w-full">
+            <div className="flex flex-col items-center justify-center w-full h-full text-center">
+              <p className="text-4xl md:text-5xl font-bold leading-normal text-black mb-8 break-words text-center drop-shadow-lg">
+                {verse["Text"]}
+              </p>
+              <p className="text-2xl font-semibold text-black text-center">
+                {displayBookName} {verse["Chapter"]}:{verse["Verse"]}
+              </p>
+            </div>
+          </Card>
+        </div>
+        <div className="mt-2 text-sm text-black text-center">
           வசனம் {currentIndex + 1} / {verses.length}
         </div>
       </div>
       {/* Fixed bottom navigation */}
-      <div className="fixed bottom-0 left-0 w-full flex justify-center bg-gradient-to-t from-indigo-100 via-white/80 to-transparent py-6 z-50">
+      <div className="fixed bottom-0 left-0 w-full flex justify-center bg-white py-6 z-50">
         <div className="flex gap-8">
           <Button onClick={goToPrevious} disabled={currentIndex === 0} variant="outline" size="lg">
             முந்தைய

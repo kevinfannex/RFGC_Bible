@@ -14,18 +14,27 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 py-8 px-4">
-      <div className="max-w-6xl mx-auto">
+    <div className="relative min-h-screen bg-white py-8 px-4 overflow-hidden">
+      {/* Decorative Christian Emoji Background - only on large screens */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-10 select-none text-7xl hidden sm:grid grid-cols-3 grid-rows-2 gap-8 place-items-center rotate-12">
+        <span>✝️</span>
+        <span>🕊️</span>
+        <span>📖</span>
+        <span>🙏</span>
+        <span>✨</span>
+        <span>✝️</span>
+      </div>
+      <div className="relative z-10 max-w-6xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            தமிழ் பைபிள் ஸ்லைடுகள்
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+            RFGC Ministries
           </h1>
-          <p className="text-lg text-gray-600">
-            வசனங்களை ஸ்லைடு போல் காண்பிக்கும் பயன்பாடு
+          <p className="text-lg font-medium">
+            உன் விசுவாசம் உன்னை இரட்சித்தது
           </p>
         </motion.div>
         {/* No hardcoded verse text here */}
@@ -37,7 +46,7 @@ const HomePage = () => {
             transition={{ delay: 0.2 }}
           >
             <Card className="rounded-2xl shadow-xl p-8">
-              <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">
+              <h2 className="text-2xl font-bold text-center mb-6">
                 பழைய ஏற்பாடு
               </h2>
               <div className="grid grid-cols-2 gap-3">
@@ -45,7 +54,7 @@ const HomePage = () => {
                   <Button
                     key={index}
                     variant="outline"
-                    className="text-sm h-auto py-3 px-2 hover:bg-indigo-50 transition-colors"
+                    className="text-sm h-auto py-3 px-2 transition-colors"
                     onClick={() => selectBook(index)}
                   >
                     {book}
@@ -62,7 +71,7 @@ const HomePage = () => {
             transition={{ delay: 0.4 }}
           >
             <Card className="rounded-2xl shadow-xl p-8">
-              <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">
+              <h2 className="text-2xl font-bold text-center mb-6">
                 புதிய ஏற்பாடு
               </h2>
               <div className="grid grid-cols-2 gap-3">
@@ -70,7 +79,7 @@ const HomePage = () => {
                   <Button
                     key={index + 39}
                     variant="outline"
-                    className="text-sm h-auto py-3 px-2 hover:bg-purple-50 transition-colors"
+                    className="text-sm h-auto py-3 px-2 transition-colors"
                     onClick={() => selectBook(index + 39)}
                   >
                     {book}
